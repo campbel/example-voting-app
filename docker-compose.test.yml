@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+
+  test:
+    build: ./tests
+    depends_on:
+      - vote
+      - result
+      - worker
+
+  vote:
+    ports: []
+
+  result:
+    ports: []
+    

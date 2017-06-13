@@ -1,53 +1,35 @@
-version: "3"
+version: "2"
 
 services:
   vote:
+    image: campbel/votingapp-vote:latest
     build: ./vote
     command: python app.py
     volumes:
      - ./vote:/app
     ports:
-      - "5000:80"
-    networks:
-      - front-tier
-      - back-tier
+      - "8000:80"
 
   result:
+    image: campbel/votingapp-result:latest
     build: ./result
     command: nodemon --debug server.js
     volumes:
       - ./result:/app
     ports:
-      - "5001:80"
-      - "5858:5858"
-    networks:
-      - front-tier
-      - back-tier
+      - "8001:80"
 
   worker:
-    build:
-      context: ./worker
-    networks:
-      - back-tier
+    image: campbel/votingapp-worker:latest
+    build: ./worker
 
   redis:
     image: redis:alpine
-    container_name: redis
-    ports: ["6379"]
-    networks:
-      - back-tier
 
   db:
     image: postgres:9.4
-    container_name: db
     volumes:
       - "db-data:/var/lib/postgresql/data"
-    networks:
-      - back-tier
 
 volumes:
   db-data:
-
-networks:
-  front-tier:
-  back-tier:
