@@ -1,5 +1,6 @@
 Example Voting App
 =========
+This is a fork of the example-voting-app written by the docker team for the purposes of demonstrating a continuous deployment pipeline for a multi-container Docker application.
 
 Getting started
 ---------------
