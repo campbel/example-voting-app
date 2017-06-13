@@ -8,10 +8,4 @@ services:
       - vote
       - result
       - worker
-
-  vote:
-    ports: []
-
-  result:
-    ports: []
     
