@@ -1,15 +1,15 @@
-version: "3"
+version: "3.1"
 
 services:
 
   vote:
     image: campbel/votingapp-vote:latest
     ports:
-      - 8000:80
+      - 30080:80
     deploy:
       replicas: 1
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
@@ -17,11 +17,11 @@ services:
   result:
     image: campbel/votingapp-result:latest
     ports:
-      - 8001:80
+      - 30081:80
     deploy:
       replicas: 1
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
@@ -31,7 +31,7 @@ services:
     deploy:
       replicas: 1
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
@@ -41,7 +41,7 @@ services:
     deploy:
       replicas: 1
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
@@ -53,10 +53,12 @@ services:
     deploy:
       replicas: 1
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
+      placement:
+        constraints: [node.role == manager]
 
 volumes:
   db-data:
