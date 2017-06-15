@@ -19,7 +19,8 @@ type Score struct {
 
 func TestVote(t *testing.T) {
 
-	time.Sleep(time.Second * 5)
+	// Wait for the other services to startup
+	time.Sleep(time.Second * 10)
 
 	//
 	//	Listen for Results
@@ -66,8 +67,12 @@ func TestVote(t *testing.T) {
 	//	Validate result
 	//
 
-	score := <-resultChan
-	if score.A < 1 {
-		t.Error("score was not expected value", score.A)
+	select {
+	case score := <-resultChan:
+		if score.A < 1 {
+			t.Error("score was not expected value", score.A)
+		}
+	case <-time.After(time.Second * 10):
+		t.Fatal("timed out waiting for result")
 	}
 }
