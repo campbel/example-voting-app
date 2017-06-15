@@ -47,7 +47,7 @@ func TestVote(t *testing.T) {
 	defer c.Close()
 
 	//
-	// Vote for A
+	//	Vote for A
 	//
 
 	postData := url.Values{}
