@@ -5,17 +5,12 @@ services:
     image: campbel/votingapp-vote:latest
     build: ./vote
     command: python app.py
-    volumes:
-     - ./vote:/app
     ports:
       - "8000:80"
 
   result:
     image: campbel/votingapp-result:latest
     build: ./result
-    command: nodemon --debug server.js
-    volumes:
-      - ./result:/app
     ports:
       - "8001:80"
 
