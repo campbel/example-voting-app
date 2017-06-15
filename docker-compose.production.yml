@@ -4,6 +4,7 @@ services:
 
   vote:
     image: campbel/votingapp-vote:latest
+    command: python app.py
     ports:
       - 30080:80
     deploy:
