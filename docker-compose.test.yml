@@ -2,6 +2,30 @@ version: '2'
 
 services:
 
+version: "2"
+
+services:
+  vote:
+    image: campbel/votingapp-vote:latest
+    build: ./vote
+    command: python app.py
+
+  result:
+    image: campbel/votingapp-result:latest
+    build: ./result
+
+  worker:
+    image: campbel/votingapp-worker:latest
+    build: ./worker
+
+  redis:
+    image: redis:alpine
+
+  db:
+    image: postgres:9.4
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+
   test:
     build: ./tests
     depends_on:

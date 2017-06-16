@@ -2,13 +2,30 @@ pipeline {
     agent any
 
     triggers { 
-        // build triggers go here
+        
     }
 
     stages {
         stage('Build') {
             steps {
-                // build steps go here
+            
+            }
+        }
+        stage('Test') {
+            steps  {
+            
+            }
+        }
+        stage('Push') {
+            steps {
+
+            }
+        }
+        stage('Deploy') {
+            environment {
+            }
+            steps {
+
             }
         }
     }
